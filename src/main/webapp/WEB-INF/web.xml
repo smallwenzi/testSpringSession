@@ -13,6 +13,15 @@
 		</param-value>
   </context-param>
 
+  <filter>
+	<filter-name>springSessionRepositoryFilter</filter-name>
+	<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>	
+  </filter>
+  <filter-mapping>
+	<filter-name>springSessionRepositoryFilter</filter-name>
+	<url-pattern>/*</url-pattern>
+  </filter-mapping>
+
     <!-- spring mvc start -->
   <servlet>
     <servlet-name>springmvc</servlet-name>
@@ -32,6 +41,7 @@
     <servlet-name>springmvc</servlet-name>
     <url-pattern>*.do</url-pattern>
   </servlet-mapping>
+  
    <!-- spring mvc end -->
    
   <listener>
