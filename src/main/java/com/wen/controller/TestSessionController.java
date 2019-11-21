@@ -1,4 +1,4 @@
-package com.amway.controller;
+package com.wen.controller;
 
 
 import java.io.IOException;
