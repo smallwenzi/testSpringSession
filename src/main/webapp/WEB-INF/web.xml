@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
+	 <display-name>WEIXIN PLATFORM</display-name>
+  <description>test</description>
+  <!-- 初始化  -->
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>
+			classpath*:/applicationContext.xml
+		</param-value>
+  </context-param>
+
+    <!-- spring mvc start -->
+  <servlet>
+    <servlet-name>springmvc</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>
+          classpath*:/applicationContext-mvc.xml</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>springmvc</servlet-name>
+    <url-pattern>*.jhtml</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>springmvc</servlet-name>
+    <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+   <!-- spring mvc end -->
+   
+  <listener>
+    <!-- 作用 启动Web容器时，自动装配ApplicationContext的配置信息 -->
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  
+  <listener>
+    <!-- 它是一个在web应用关闭的时候，清除JavaBeans Introspector的监听器。
+    web.xml中注册这个listener，可以保证在web 应用关闭的时候释放与掉这个web 应用相关的class loader和由它管理的类 -->
+    <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+  </listener>
+  
+  <session-config>
+   <!-- session 30分钟过期 -->
+    <session-timeout>30</session-timeout>
+  </session-config>
+  
+  
+  <error-page>
+    <!-- 404 页面 -->
+    <error-code>404</error-code>
+    <location>/common/resource_not_found.jhtml</location>
+  </error-page>
+</web-app>
